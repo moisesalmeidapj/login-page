@@ -1,0 +1,37 @@
+.content {
+    left: 50%;
+    top: 50%;
+    background-color: rgba(137, 163, 163, 0.9);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    padding: 80px;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+    padding: 15px;
+    width: 300px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+button{
+    margin-top: 15px;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+button:hover{
+    background-color: azure;
+}
+
+span {
+    color: red;
+}
