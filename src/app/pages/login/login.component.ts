@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { LoginDto } from '../../interface/login-dto';
+import { LoginDTO } from '../../interface/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +14,29 @@ import { LoginDto } from '../../interface/login-dto';
 export class LoginComponent {
   loginForm!:FormGroup;
 
-  constructor(private _authService:AuthService) {
+  constructor(private authService:AuthService, private router: Router) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
   }
 
   public submit(){
     let login = {
-      username: this.loginForm.value.email,
+      username: this.loginForm.value.username,
       password: this.loginForm.value.password
-    } as LoginDto
+    } as LoginDTO;
 
-    this._authService.login(login)
+    this.authService.login(login).subscribe({
+      next: () => {
+        this.navigate()
+      },
+      error: () => console.log("Deu ruim")
+    })
   }
-  
+
+  public navigate(){
+    this.router.navigate(['home'])
+  }
 }
 
